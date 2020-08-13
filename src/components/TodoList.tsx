@@ -5,7 +5,7 @@ import { RootState } from '../redux/rootReducer';
 
 
 export const TodoList: React.FC = () => {
-    const todos = useSelector((state: RootState): [] => state.todos);
+    const todos = useSelector((state: RootState) => state.todos);
 
     const todoList = todos.map(todo => {
         const {id, title, desc, date} = todo

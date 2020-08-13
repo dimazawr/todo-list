@@ -1,34 +1,25 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO, FORM_TOGGLE, TOGGLE_RECORD, RECORD, CLEAN_RECORD, SAVE_TODOS_BEFORE_RECORD, INIT_TODOS_ON_PLAY, TOGGLE_PLAY } from './types';
-import { Action } from './actions';
-
-// READ REDUX DOCS ABOUT TS AND REFACTOR
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO, FORM_TOGGLE, TOGGLE_RECORD, RECORD, CLEAN_RECORD, SAVE_TODOS_BEFORE_RECORD, INIT_TODOS_ON_PLAY, TOGGLE_PLAY, AppActionTypes } from './types';
 
 
-export type Todos = {
-    todos: Todo[] | []
-}
-
-export type Todo = {
+export interface Todo  {
     id: string,
     title: string,
-    desc?: string,
+    desc: string,
     date: string
   }
 
-type isFormOpen = {
-    isFormOpen: boolean
-}
 
-type Record = {
+interface StateShape {
+    todos: Todo[],
+    isFormOpen: boolean,
     isRecordOn: boolean,
-    todosBeforeRecord: Todo[] | [],
+    todosBeforeRecord: Todo[],
     recordHistory: Todo[],
     isPlayOn: boolean
+    
 }
 
-
-
-const initialState: Todos & isFormOpen & Record = {
+const initialState: StateShape = {
     todos: [],
     isFormOpen: false,
     isRecordOn: false,
@@ -39,7 +30,7 @@ const initialState: Todos & isFormOpen & Record = {
 
 export type RootState = ReturnType<typeof rootReducer>
 
-export const rootReducer = (state = initialState as any, action: Action) => {
+export const rootReducer = (state = initialState, action: AppActionTypes): StateShape  => {
     switch (action.type) {
 
         case FORM_TOGGLE:

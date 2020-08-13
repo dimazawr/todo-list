@@ -1,17 +1,12 @@
-import { FORM_TOGGLE, ADD_TODO, UPDATE_TODO, CLEAN_RECORD, DELETE_TODO, TOGGLE_RECORD, RECORD, SAVE_TODOS_BEFORE_RECORD, INIT_TODOS_ON_PLAY, TOGGLE_PLAY } from "./types";
+import { FORM_TOGGLE, ADD_TODO, UPDATE_TODO, CLEAN_RECORD, DELETE_TODO, TOGGLE_RECORD, RECORD, SAVE_TODOS_BEFORE_RECORD, INIT_TODOS_ON_PLAY, TOGGLE_PLAY, AppActionTypes } from "./types";
 import { ThunkDispatch, ThunkAction } from "redux-thunk";
 import { RootState } from "./rootReducer";
 import { Todo } from "./rootReducer";
 
 
 
-export type Action = {
-    type: string,
-    payload: string | object | boolean
-}
 
-
-export const toggleForm = () => {
+export const toggleForm = ():AppActionTypes => {
     return {
         type: FORM_TOGGLE
     }
@@ -19,48 +14,48 @@ export const toggleForm = () => {
 
 
 
-export const addTodo = (todo: object) => {
+export const addTodo = (todo: Todo):AppActionTypes => {
     return {
         type: ADD_TODO,
         payload: todo
     }
 }
 
-export const deleteTodo = (todos: Todo[]) => {
+export const deleteTodo = (todos: Todo[]):AppActionTypes => {
     return {
         type: DELETE_TODO,
         payload: todos
     }
 }
 
-export const updateTodo = (todos: Todo[]) => {
+export const updateTodo = (todos: Todo[]):AppActionTypes => {
     return {
         type: UPDATE_TODO,
         payload: todos
     }
 }
 
-export const toggleRecord = (bool: boolean) => {
+export const toggleRecord = (bool: boolean):AppActionTypes => {
     return {
         type: TOGGLE_RECORD,
         payload: bool
     }
 }
 
-export const saveTodosBeforeRec = () => {
+export const saveTodosBeforeRec = ():AppActionTypes => {
     return {
         type: SAVE_TODOS_BEFORE_RECORD,
     }
 }
 
- export const record = (todos: Todo[]) => {
+ export const record = (todos: Todo[]):AppActionTypes => {
     return {
         type: RECORD,
         payload: todos
     }
 }
 
-export const togglePlay = (bool: boolean) => {
+export const togglePlay = (bool: boolean):AppActionTypes => {
     return {
         type: TOGGLE_PLAY,
         payload: bool
@@ -68,7 +63,7 @@ export const togglePlay = (bool: boolean) => {
 }
 
 
-export const initTodosOnPlay = () => {
+export const initTodosOnPlay = ():AppActionTypes => {
     return {
         type: INIT_TODOS_ON_PLAY
     }
@@ -90,7 +85,7 @@ export const playRecord = ():ThunkAction<void, RootState, unknown, any> => (disp
 } 
 
 
-export const cleanRecord = () => {
+export const cleanRecord = ():AppActionTypes => {
     return {
         type: CLEAN_RECORD
     }
