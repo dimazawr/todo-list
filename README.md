@@ -1,44 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Todo list app
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+A good old todo app, but with some additional features such as record todos and play todos.
+
+####  Background
+
+Some time ago I found on the internet a screenshot of an assignment task for a React developer position in some company. 
+
+![Screenshot](/assignment_screenshot.jpg?raw=true "Optional Title")
+
+Finally I decided to give it a shot and that task became an inspiration for this small project, where I combined a React based app with my first steps in the TypeScript.
+
+
+
+## Installation
+
+Clone or download app repository to your computer.
+
+In the project's folder open a new terminal tab and run 
+ `npm install`
+
+## Usage
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
+Runs the app in the development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm test`
+### Controls
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Todo actions
 
-### `npm run build`
+Click 'Add todo' button to add todo
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Click :pencil: to edit your todo
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Click :wastebasket: to delete your todo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Recording actions
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Click   :black_circle:  button to start record your Todo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Click   :black_medium_square: to stop recording
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Click  :arrow_forward: to play your recording
 
-## Learn More
+Click :wastebasket: to delete your record
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Architecture
+
+
+* React
+* TypeScript
+* Redux / React-Redux
+* Redux-thunk
+* SCSS
+
