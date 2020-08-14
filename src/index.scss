@@ -6,33 +6,78 @@ $color-primary-4: #97aec6;
 
 
 
+// completely random amount of pixels, breakpoint is made for 'controls-bar'
+$breakpoint-small: 400.98px;
+// generic 'medium'
+$breakpoint-medium: 767.98px;
+// generic 'large'
+$breakpoint-large: 1154.98px;
+
 body {
   font-family: 'Fira Sans', sans-serif;
+  margin: 0;
 }
 
 :disabled {
   opacity: .6;
 }
 
+// nice a11y styles for focus from the npm package focus-visible
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
 .container {
-  width: 40rem;
+  width: 100%;
   margin: 5rem auto;
   padding: .8rem;
   text-align: center;
   background-color: $color-primary-0;
 }
 
+@media screen and (min-width: $breakpoint-medium){
+  .container {
+    width: 50%;
+  }
+}
+
 .controls-bar {
-  display: inline-flex;
-  width: 75%;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 1.2rem;
+
+  display: grid;
+  width: 60%;
+  grid-template-columns: 4rem 4rem 4rem;
+  margin: 0 auto .8rem auto;
+  justify-items: center;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 3px;
+
+    .btn:first-child {
+      grid-column: 1/3;
+      width: 7.8rem;
+    }
+
+  
 
   .btn {
     align-self: center;
   }
 
+}
+
+@media screen and (min-width: $breakpoint-small){
+  .controls-bar {
+    width: 75%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+
+
+    .btn:first-child {
+      width: 5rem;
+    }
+
+  }
 }
 
 
@@ -49,7 +94,7 @@ body {
   text-decoration: none;
   background-color: $color-primary-3;
   margin: 1rem auto;
-  width: 63%;
+  width: 75%;
   box-shadow: 1px 4px 8px $color-primary-2;
 
   .btn {
@@ -70,6 +115,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-self: flex-end;
+  margin-bottom: .5rem;
 }
 
 .todo-content {
@@ -128,8 +174,8 @@ input::placeholder, textarea::placeholder {
 }
 
 .btn {
-  width: 5rem;
-  height: 2.5rem;
+  width: 3.5rem;
+  height: 3rem;
   border: none;
   border-radius: 5%;
   margin-top: 5px;
@@ -138,4 +184,11 @@ input::placeholder, textarea::placeholder {
   font-size: .9rem;
   color: $color-primary-2;
   background-color: $color-primary-4;
+}
+
+@media screen and (min-width: $breakpoint-large){
+  .btn {
+    width: 5rem;
+    height: 2.5rem;
+  }
 }

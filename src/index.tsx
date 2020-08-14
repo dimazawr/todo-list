@@ -1,4 +1,3 @@
-import '@csstools/normalize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
@@ -9,9 +8,12 @@ import { rootReducer } from './redux/rootReducer';
 import { throttle } from 'lodash';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { loadState, saveState } from './localStorage';
-
-import './index.scss';
 import { recordingTodosMiddleware } from './redux/recordingTodosMiddleware';
+
+import '@csstools/normalize.css';
+import 'focus-visible';
+import './index.scss';
+
 
 const middlewares = [recordingTodosMiddleware, thunk]
 
