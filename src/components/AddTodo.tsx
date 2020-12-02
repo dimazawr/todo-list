@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import uid from 'uid';
+import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addTodo,toggleForm } from '../redux/actions';
 import { TodoForm } from './TodoForm';
@@ -15,7 +15,7 @@ export const AddTodo: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         dispatch(addTodo({
-            id: uid(6),
+            id: nanoid(8),
             title: title,
             desc: description,
             date: moment().format('MMMM Do YYYY')

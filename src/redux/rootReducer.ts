@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO, FORM_TOGGLE, TOGGLE_RECORD, RECORD, CLEAN_RECORD, SAVE_TODOS_BEFORE_RECORD, INIT_TODOS_ON_PLAY, TOGGLE_PLAY, AppActionTypes } from './types';
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO, FORM_TOGGLE, TOGGLE_RECORD, RECORD, CLEAN_RECORD, SAVE_TODOS_BEFORE_RECORD, INIT_TODOS_ON_PLAY, TOGGLE_PLAY, AppActionTypes, RecordTypes, CLEAN_SAVED_TODOS } from './types';
 
 
 export interface Todo  {
@@ -14,7 +14,7 @@ interface StateShape {
     isFormOpen: boolean,
     isRecordOn: boolean,
     todosBeforeRecord: Todo[],
-    recordHistory: Todo[],
+    recordHistory: RecordTypes[] | [],
     isPlayOn: boolean
     
 }
@@ -66,12 +66,17 @@ export const rootReducer = (state = initialState, action: AppActionTypes): State
 
         case RECORD:
             return {
-                    ...state, recordHistory: state.recordHistory.concat(action.payload)
+                    ...state, recordHistory: [ ...state.recordHistory, action.payload ]
             }
 
         case CLEAN_RECORD:
             return {
-                    ...state, recordHistory: [], todosBeforeRecord: []
+                    ...state, recordHistory: []
+            }
+
+        case CLEAN_SAVED_TODOS:
+            return {
+                     ...state, todosBeforeRecord: []
             }
 
         case INIT_TODOS_ON_PLAY: 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import uid from 'uid';
+import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { TodoForm } from './TodoForm';
 import { updateTodo } from '../redux/actions';
@@ -30,7 +30,7 @@ export const UpdateTodo: React.FC<Props> = ({id, updateMode, setUpdateMode, titl
         let updatedTodos: Todo[] = todos.map(todo => { 
                        if(todo.id === id) {
                             todo = {
-                            id: uid(6),
+                            id: nanoid(8),
                             title: title,
                             desc: description,
                             date: moment().format('MMMM Do YYYY')

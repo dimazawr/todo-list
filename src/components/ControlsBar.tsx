@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleForm, toggleRecord, cleanRecord, saveTodosBeforeRec, playRecord, togglePlay } from '../redux/actions';
+import { toggleForm, toggleRecord, cleanRecord, saveTodosBeforeRec, playRecord, togglePlay, cleanSavedTodos } from '../redux/actions';
 import { RootState } from '../redux/rootReducer';
 import { Button } from './Button';
 import { BsFillCaretRightFill, BsFillCircleFill, BsFillSquareFill, BsFillTrashFill } from 'react-icons/bs';
@@ -10,7 +10,21 @@ import { BsFillCaretRightFill, BsFillCircleFill, BsFillSquareFill, BsFillTrashFi
 export const ControlsBar: React.FC = () => {
 
     const isFormOpen = useSelector((state: RootState) => state.isFormOpen);
+    const isPlayOn = useSelector((state: RootState) => state.isPlayOn);
+    const recordHistory = useSelector((state: RootState) => state.recordHistory);
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if(isPlayOn) {
+            setRecordDisabled(true);
+            setStopDisabled(true);
+            setPlayDisabled(true);
+        } else {
+            setRecordDisabled(false);
+            setPlayDisabled(false);
+        }
+    }, [isPlayOn])
 
     // State for the buttons 
     const [recordDisabled, setRecordDisabled] = useState(false);
@@ -24,46 +38,58 @@ export const ControlsBar: React.FC = () => {
     const btnText:string = isFormOpen ? 'Close' : 'Add todo';
 
 
-    const toggleF = () => {
+    const handleToggleForm = () => {
         dispatch(toggleForm());
     }
 
-    const record = () => {
+    const handleRecordClick = () => {
+        // erases record if there is one, to prevent UI bugs
+        if(recordHistory.length) {
+            dispatch(cleanRecord());
+        }
+
         setRecordDisabled(true);
         setStopDisabled(false);
+        setPlayDisabled(true);
         dispatch(toggleRecord(true));
         dispatch(saveTodosBeforeRec());
     }
   
-    const stop = () => {
+    const handleStopClick = () => {
         setRecordDisabled(false);
         setStopDisabled(false);
         dispatch(toggleRecord(false));
         setPlayDisabled(false);
     }
 
-    const play = () => {
-        dispatch(togglePlay(true));
-        dispatch(playRecord());
+    const handlePlayClick = () => {
+        if(recordHistory.length) {
+            dispatch(togglePlay(true));
+            dispatch(playRecord());
+        } else {
+            return null
+        }
     }
 
-    const clean = () => {
+    const handleDeleteClick = () => {
         dispatch(cleanRecord());
+        dispatch(cleanSavedTodos());
         // just in case someone clicks it while the record is playing
         dispatch(toggleRecord(false));
         setRecordDisabled(false);
         dispatch(togglePlay(false));
         setPlayDisabled(true);
+        setStopDisabled(true);
     }
 
 
     return (
         <div className="controls-bar">
-            <Button content={btnText} handleClick={toggleF} />
-            <Button content={<BsFillCircleFill size="1.1rem" />} handleClick={record} disabledFromProps={recordDisabled} />
-            <Button content={<BsFillSquareFill size="1rem" />} handleClick={stop} disabledFromProps={stopDisabled} />
-            <Button content={<BsFillCaretRightFill size="1.6rem" />} handleClick={play} disabledFromProps={playDisabled}/>
-            <Button content={<BsFillTrashFill size="1.3rem" />} handleClick={clean} />
+            <Button content={btnText} handleClick={handleToggleForm} />
+            <Button content={<BsFillCircleFill size="1.1rem" />} handleClick={handleRecordClick} disabledFromProps={recordDisabled} />
+            <Button content={<BsFillSquareFill size="1rem" />} handleClick={handleStopClick} disabledFromProps={stopDisabled} />
+            <Button content={<BsFillCaretRightFill size="1.6rem" />} handleClick={handlePlayClick} disabledFromProps={playDisabled}/>
+            <Button content={<BsFillTrashFill size="1.3rem" />} handleClick={handleDeleteClick} />
         </div>
     )
 }

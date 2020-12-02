@@ -11,6 +11,7 @@ export const RECORD = "RECORD";
 export const TOGGLE_PLAY = "TOGGLE_PLAY";
 export const INIT_TODOS_ON_PLAY = "INIT_TODOS_ON_PLAY";
 export const CLEAN_RECORD = "CLEAN_RECORD";
+export const CLEAN_SAVED_TODOS = "CLEAN_SAVED_TODOS";
 
  interface FormToggleAction {
     type: typeof FORM_TOGGLE
@@ -44,7 +45,7 @@ export const CLEAN_RECORD = "CLEAN_RECORD";
 
   interface RecordAction {
     type: typeof RECORD
-    payload: Todo[]
+    payload: RecordTypes
   }
 
   interface TogglePlayAction {
@@ -61,6 +62,12 @@ export const CLEAN_RECORD = "CLEAN_RECORD";
     type: typeof CLEAN_RECORD
   }
 
+  interface CleanSavedTodosAction {
+    type: typeof CLEAN_SAVED_TODOS
+  }
+
+
+
   export type AppActionTypes = FormToggleAction | 
   AddTodoAction | 
   DeleteTodoAction | 
@@ -70,4 +77,8 @@ export const CLEAN_RECORD = "CLEAN_RECORD";
   RecordAction | 
   TogglePlayAction | 
   InitTodosOnPlayAction | 
+  CleanSavedTodosAction |
   CleanRecordAction;
+
+
+  export type RecordTypes =  AddTodoAction | DeleteTodoAction | UpdateTodoAction;

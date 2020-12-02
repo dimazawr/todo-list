@@ -34,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### Controls
+### User flow
 
 #### Todo actions
 
@@ -55,6 +55,9 @@ Click   :black_medium_square: to stop recording
 Click  :arrow_forward: to play your recording
 
 Click :wastebasket: to delete your record
+
+
+If user recorder their actions, clicked :black_medium_square: and then clicked :black_circle:, the previous record would be deleted from the record history and new one will be recorded instead.
 
 
 ## Architecture
