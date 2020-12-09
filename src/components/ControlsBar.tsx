@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleForm, toggleRecord, cleanRecord, saveTodosBeforeRec, playRecord, togglePlay, cleanSavedTodos } from '../redux/actions';
 import { RootState } from '../redux/rootReducer';
-import { Button } from './Button';
+import { Button } from './Button/Button';
 import { BsFillCaretRightFill, BsFillCircleFill, BsFillSquareFill, BsFillTrashFill } from 'react-icons/bs';
 
 
@@ -85,11 +85,11 @@ export const ControlsBar: React.FC = () => {
 
     return (
         <div className="controls-bar">
-            <Button content={btnText} handleClick={handleToggleForm} />
-            <Button content={<BsFillCircleFill size="1.1rem" />} handleClick={handleRecordClick} disabledFromProps={recordDisabled} />
-            <Button content={<BsFillSquareFill size="1rem" />} handleClick={handleStopClick} disabledFromProps={stopDisabled} />
-            <Button content={<BsFillCaretRightFill size="1.6rem" />} handleClick={handlePlayClick} disabledFromProps={playDisabled}/>
-            <Button content={<BsFillTrashFill size="1.3rem" />} handleClick={handleDeleteClick} />
+            <Button content={btnText} handleClick={handleToggleForm}/>
+            <Button content={<BsFillCircleFill size="1.1rem" />} testId="btn-rec" handleClick={handleRecordClick} disabledFromProps={recordDisabled} />
+            <Button content={<BsFillSquareFill size="1rem" />} testId="btn-stop" handleClick={handleStopClick} disabledFromProps={stopDisabled} />
+            <Button content={<BsFillCaretRightFill size="1.6rem" />} testId="btn-play" handleClick={handlePlayClick} disabledFromProps={playDisabled}/>
+            <Button content={<BsFillTrashFill size="1.3rem" />} testId="btn-delete-recHistory" handleClick={handleDeleteClick} />
         </div>
     )
 }

@@ -17,7 +17,7 @@ type Props = {
 
 
 
-export const UpdateTodo: React.FC<Props> = ({id, updateMode, setUpdateMode, titleVal, descVal}) => {
+export const UpdateTodoForm: React.FC<Props> = ({id, updateMode, setUpdateMode, titleVal, descVal}) => {
 
     const todos:Todo[] = useSelector((state: RootState) => state.todos);
 

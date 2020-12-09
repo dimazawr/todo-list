@@ -69,3 +69,8 @@ If user recorder their actions, clicked :black_medium_square: and then clicked :
 * Redux-thunk
 * SCSS
 
+### Tests
+
+* Jest-DOM
+* React Testing Library
+

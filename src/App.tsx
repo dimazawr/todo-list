@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddTodo } from './components/AddTodo';
+import { AddTodoForm } from './components/AddTodoForm';
 import { ControlsBar } from './components/ControlsBar';
-import { TodoList } from './components/TodoList';
+import { TodoList } from './components/TodoList/TodoList';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/rootReducer';
 
@@ -13,7 +13,7 @@ export const App: React.FC = () => {
   return (
     <div className="container">
       <ControlsBar />
-      { isFormOpen && <AddTodo/> }
+      { isFormOpen && <AddTodoForm/> }
       <TodoList />
     </div>
   );

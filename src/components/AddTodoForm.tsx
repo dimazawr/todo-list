@@ -6,7 +6,7 @@ import { addTodo,toggleForm } from '../redux/actions';
 import { TodoForm } from './TodoForm';
 
 
-export const AddTodo: React.FC = () => {
+export const AddTodoForm: React.FC = () => {
 
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
